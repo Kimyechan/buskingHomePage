@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+    <meta charset="utf-8">
+</head>
+
+<body>
+    <form action="/signUp_process" method="POST">
+        <table>
+            <tr>
+                <td>아이디</td>
+                <td><input type="text" name="id"></td>
+            </tr>
+            <tr>
+                <td>비밀번호</td>
+                <td><input type="password" name="password"></td>
+            </tr>
+            <tr>
+                <td>이름</td>
+                <td><input type="text" name="name"></td>
+            </tr>
+            <tr>
+                <td>생년월일</td>
+                <td><input type="date" name="birthday"></td>
+            </tr>
+            <tr>
+                <td>성별</td>
+                <td>
+                    <select>
+                        <option value="">성별을 선택하시오</option>
+                        <option value="male">남자</option>
+                        <option value="female">여자</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2"><input type="submit" value="가입"></td>
+            </tr>
+        </table>
+    </form>
+</body>
+
+</html>

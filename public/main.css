@@ -1,0 +1,93 @@
+body {
+    text-align: center;
+}
+
+div {
+    border: 1px solid gray;
+}
+
+iframe {
+    width: 200px;
+    height: 200px;
+}
+#all {
+    display: grid;
+    grid-template-rows: 200px 10fr 1fr;
+}
+
+#top {
+    display: grid;
+    grid-template-columns: 2fr 11fr;
+}
+
+#mid {
+    display: grid;
+    grid-template-columns: 3fr 10fr 3fr;
+}
+
+#midleft {
+    display: grid;
+    grid-template-rows: 3fr 11fr;
+}
+
+#midright {
+    display: grid;
+    grid-template-rows: 2fr 11fr;
+}
+
+#search {
+    margin-top: 50px;
+}
+
+#searchinput {
+    width: 500px;
+    height: 50px;
+}
+
+#searchbutton {
+    width: 50px;
+    height: 50px;
+}
+
+#login {
+    display: grid;
+    grid-template-columns: 10fr 50px;
+}
+
+#board_img{
+    width: 50px;
+    height : 50px;
+}
+
+.loginform{
+    display: grid;
+    grid-template-columns: 1fr 10fr;
+}
+.buskinginfo{
+    display: grid;
+    grid-template-columns: 1fr 9fr;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333333;
+} 
+  
+  li {
+    float: left;
+  }
+  
+  li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 16px;
+    text-decoration: none;
+  }
+  
+  /* li a:hover {
+    background-color: #111111;
+  } */

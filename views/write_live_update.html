@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="utf-8">
+    <% 
+        var image = image;
+        var singer = singer;
+        var song = song;
+        var song_list = song_list;
+        var genre =  genre;
+        var start_time = start_time;
+        var end_time = end_time;
+        var location = location;
+        var location_detail = location_detail;
+        var youtube_link = youtube_link;
+    %>
+</head>
+
+<body>
+    <form action="/write_live_update_process" method="POST" enctype="multipart/form-data">
+        <input type="hidden" name="board_num" value="<%=busking_info[0].board_num %>">
+        이미지 : <input type="file" name="image" placeholder="<%=image%>"><br>
+        가수 이름 : <input type="text" name="singer" placeholder="<%=singer%>"><br>
+        대표 노래 : <input type="text" name="song" placeholder="<%=song%>"><br>
+        노래 목록 : <textarea name="song_list" placeholder="<%=song_list%>"></textarea><br>
+        장르 : <select name="genre" placeholder="<%=location%>">
+            <option value="ballade">발라드</option>
+            <option value="hiphop">힙합 </option>
+            <option value="acoustic">어쿠스틱</option>
+        </select><br>
+        시간 : <input type="datetime-local" name="start" placeholder="<$=start_time"> ~ <input type="datetime-local" name="end" placeholder="<%=end_time%>"><br>
+        위치 : <select name="location" placeholder="<%=location%>">
+            <option value="busan">부산</option>
+            <option value="seoul">서울</option>
+        </select><br>
+        상세 위치: <input type="text" name="location_detail" placeholder="<%=location_detail%>"><br>
+        실시간 유투브 링크 : <input type="text" name="youtube_link" placeholder="<%=youtube_link%>"><br>
+        <input type="submit" value="등록">
+    </form>
+</body>

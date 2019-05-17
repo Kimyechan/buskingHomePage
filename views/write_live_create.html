@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="utf-8">
+</head>
+
+<body>
+    <form action="/write_live_create_process" method="POST" enctype="multipart/form-data">
+        이미지 : <input type="file" name="image" ><br>
+        가수 이름 : <input type="text" name="singer" ><br>
+        대표 노래 : <input type="text" name="main_song" ><br>
+        노래 목록 : <textarea name="song_list" ></textarea><br>
+        장르 : <select name="genre" >
+            <option value="ballade">발라드</option>
+            <option value="hiphop">힙합 </option>
+            <option value="acoustic">어쿠스틱</option>
+        </select><br>
+        시간 : <input type="datetime-local" name="start"> ~ <input type="datetime-local" name="end"><br>
+        위치 : <select name="location">
+            <option value="busan">부산</option>
+            <option value="seoul">서울</option>
+        </select><br>
+        상세 위치: <input type="text" name="location_detail"><br>
+        실시간 유투브 링크 : <input type="text" name="youtube_link"><br>
+        <input type="submit" value="등록">
+    </form>
+</body>

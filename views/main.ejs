@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="/main.css">
+    <!--/를 붙이니깐 다른 페이지에서 불러와도 적용됨-->
+</head>
+
+<body>
+    <% 
+        var board_num = 0;
+        var detail_board_num = detail_board_num;
+        var my_board_view = my_board_view;
+    %>
+    <%
+        var curSet = pasing.curSet
+        var endPage = pasing.endPage
+        var startPage = pasing.startPage
+        var totalSet = pasing.totalSet
+        var totalPage = pasing.totalPage
+        var page_list_size = pasing.page_list_size
+        var page_size = pasing.page_size
+        var curPage = pasing.curPage
+    %>   
+    <div id="all">
+        <!--전체-->
+        <div id="top">
+            <!--top-->
+            <img src="">
+            <form action="/login_process" method="GET" id="search">
+                <!--수평-->
+                <input type="text" name="" id="searchinput">
+                <input type="submit" value="검색" id="searchbutton">
+            </form>
+        </div>
+        <div id="mid">
+            <!--중간-->
+            <div id="midleft">
+                <!--left-->
+                <div>
+                    <%- login_form %>
+                    <a href="/signUp">회원가입</a><br>
+                    <a href="">forgot ID</a><br>
+                    <a href="">forgot password</a>
+                </div>
+                <div>
+                    <h6>인기 버스커 순위</h6>
+                    <ol>
+                        <li><a href="">------</a></li>
+                        <li><a href="">------</a></li>
+                        <li><a href="">------</a></li>
+                        <li><a href="">------</a></li>
+                    </ol>
+                </div>
+            </div>
+            <div id="midcenter">
+                <!--center-->
+                <div>
+                    <form action="/find_live_process" method="POST">
+                        <select name="location">
+                            <option>장소</option>
+                            <option value="busan">부산</option>
+                            <option value="seoul">서울</option>
+                            <option value="daegu">대구</option>
+                        </select>
+                        <select name="genre">
+                            <option>장르</option>
+                            <option value="ballade">발라드</option>
+                            <option value="acoustic">어쿠스틱</option>
+                            <option value="hiphop">힙합</option>
+                        </select>
+                        <input type="submit" value="찾기">
+                    </form>
+                    <input type="button" value="글쓰기" onclick="location.href='/write_live_create'">
+                    <input type="button" value="내 글보기" onclick="location.href='/my_write_live'">
+                </div>
+                <div>
+                    <a href="">인기순</a>
+                    <a href="">시간순</a>
+                </div>
+                <% 
+                    while(board_num < busking_info.length && busking_info.length != 0) {
+                %>
+                <div class="buskinginfo">
+                    <img id="board_img" src="/images/<%=busking_info[board_num].image%>">
+                    <div>
+                        가수: <%=busking_info[board_num].singer %><br>
+                        위치: <%=busking_info[board_num].location %><br>
+                        대표 노래 : <%=busking_info[board_num].song %> <br>
+                        장르: <%=busking_info[board_num].genre %><br>
+                        <% if(detail_board_num != undefined && busking_info[board_num].board_num == detail_board_num){ %>
+                        노래 목록: <%= busking_info[board_num].song_list %> <br>
+                        실시간 유투브: <%- busking_info[board_num].youtube_link %> <br>
+                        <% } %>
+                        <% if(my_board_view !== undefined  && my_board_view){ %>
+                        <input type="button" value="수정하기"
+                            onclick="location.href='/update_board/<%=busking_info[board_num].board_num%>'">
+                        <input type="button" value="삭제하기"
+                            onclick="location.href='/delete_board_process/<%=busking_info[board_num].board_num%>'">
+                        <% } %>
+                        <input type="button" value="상세보기"
+                            onclick="location.href='/show_detail/<%=busking_info[board_num].board_num%>'">
+                    </div>
+                </div>
+                <% 
+                        board_num++;
+                    } 
+                %>
+                <br>
+                <br>
+                <div class="container">
+                    <ul class="pager">
+                        <%
+                            if(curSet > 1){
+                        %>
+                        <li value=(startPage -1) class="previous">
+                            <a href='/pasing/<%= ( startPage - 1) %>'>이전페이지</a>
+                        </li>
+                        <%
+                            }
+                        %>
+                        <%
+                            for(var i = startPage; i <= endPage; i++){
+                            if(i > totalPage){break;}
+
+                            if(i == curPage){
+                        %>
+                        <li value=<%= i %> class=''>
+                            <a href='/pasing/<%= i %>'>
+                                <%= i %>
+                            </a>
+                        </li>
+                        <%
+                            }else{
+                        %>
+                        <li value=<%= i %> class='active'>
+                            <a href='/pasing/<%= i %>'>
+                                <%= i %>
+                            </a>
+                        </li>
+                        <%
+                            }
+                        %>
+                        <%
+                            }
+                        %>
+                        <%
+                            if(curSet < totalSet){
+                        %>
+                        <li value=( endPage + 1) class="next">
+                            <a href='/pasing/<%= ( endPage + 1) %>'>다음페이지</a>
+                        </li>
+                        <%
+                            }
+                        %>
+                    </ul>
+                </div>
+                <br>
+                <br>
+
+            </div>
+            <div id="midright">
+                <!--right-->
+                <div>
+                    <h6>내 주변 버스킹 찾기</h6>
+                    <form action="" method="POST">
+                        <label for="distance">거리 조절</label>
+                        <select name="">
+                            <option>거리 선택</option>
+                            <option>100m</option>
+                            <option>300m</option>
+                            <option>500m</option>
+                            <option>1km</option>
+                        </select>
+                    </form>
+                </div>
+                <div>
+                    <h6>실시간 인기 유튜브 생방송</h6>
+                    <iframe width="150" height="100" src="https://www.youtube.com/embed/tsC9pnDXhKc" frameborder="0"
+                        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+                    </iframe>
+                </div>
+            </div>
+        </div>
+        <div>
+            <!--아래-->
+            <h6>유투브 인기 동영상</h6>
+            <iframe width="150" height="100" src="https://www.youtube.com/embed/7T7r_oSp0SE" frameborder="0"
+                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+            </iframe>
+        </div>
+    </div>
+</body>
+
+</html>
